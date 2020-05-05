@@ -12,16 +12,11 @@ def is_abundant(n):
     return False
 
 
-abundants = []
-upto = 28123
-for i in range(1, upto):
-    if is_abundant(i):
-        abundants.append(i)
 
 
-def worker_function(num):
-    global abundants
 
+def worker_function(args):
+    num, abundants = args
     def is_summed_abundant(num):
         for i in abundants:
             if i > num / 2:
@@ -39,9 +34,15 @@ def worker_function(num):
 if __name__ == '__main__':
     start = time()
 
+    abundants = []
+    upto = 28123
+    for i in range(1, upto):
+        if is_abundant(i):
+            abundants.append(i)
+
     from multiprocessing import Pool
     with Pool(30) as p:
-        unsummables = p.map(worker_function, range(1, upto + 1))
+        unsummables = p.map(worker_function, zip(range(1, upto + 1), [abundants for i in range(upto)]))
     print(sum(unsummables))
 
     print('Completed in', round((time() - start) * 1000), 'ms')

@@ -1,8 +1,7 @@
 from time import time
 
 
-def find_prime_factors(n):
-    num = n
+def find_prime_factors(num):
     factors = []
 
     def is_prime(m):
