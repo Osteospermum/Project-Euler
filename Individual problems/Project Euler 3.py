@@ -10,6 +10,8 @@ def find_prime_factors(num):
             for i in range(2, floor(sqrt(m)) + 1):
                 if m % i == 0:
                     return False
+        else:
+            return False
         return True
 
     while not is_prime(num):
