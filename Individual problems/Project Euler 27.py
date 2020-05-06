@@ -45,7 +45,6 @@ def find_max_product(ab_max):
             f.a = a
             if f.consecutive_primes() > best[0]:
                 best = (f.consecutive_primes(), f.a, f.b)
-    print(best)
     return best[1] * best[2]
 
 
